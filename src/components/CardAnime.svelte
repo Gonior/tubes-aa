@@ -3,7 +3,7 @@
     export let title;
     export let genres;
     export let views;
-    export let score = 0.9;
+    export let score = "";
     export let episode;
 </script>
 <div class="bg-purple-200 w-full rounded flex items-center py-2"> 
@@ -18,7 +18,9 @@
                 <h2 class="text-xs text-gray-500">{views} views</h2>
                 <h2 class="text-xs text-gray-500">{episode} eps</h2>
             </div>
+            {#if score != ""} 
             <h3 class="text-xl"><span class="text-gray-600">Score </span><span class="text-black font-bold"> {parseFloat(score).toFixed(2)}</span></h3>
+            {/if}
         </div>
     </div>
 </div>

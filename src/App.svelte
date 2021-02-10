@@ -1,12 +1,15 @@
 <script>
 
 	import Modal from './components/Modal.svelte'
+	import CardAnime from './components/CardAnime.svelte'
 	import dataGenres from './data/data.js'
 	import { quintOut } from 'svelte/easing';
 	import { crossfade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
+	import {animes} from './data/animes.js'
 	let genres = [...dataGenres]
 	let showModal = false
+	let showNotif = false
 	let strSelected = ''
 	const [send, receive] = crossfade({
 		duration: d => Math.sqrt(d * 200),
@@ -28,7 +31,7 @@
 
 	
 	const handleProcess = () => {
-		showModal = !showModal
+		
 		strSelected = ''
 		//pencarian genre yang dipilih
 		let selected = genres.filter(e => e.selected)
@@ -37,7 +40,9 @@
 				strSelected += selected[i].name
 				if (selected[i+1]!= undefined) strSelected += ", "
 			}
-		}
+			showModal = !showModal
+			showNotif = false
+		} else showNotif = true
 	}
 	const handleClose= () => {
 		showModal = !showModal
@@ -50,6 +55,7 @@
 		g.selected = s;
 		remove(g);
 		genres = genres.concat(g);
+		showNotif = false
 	}
 </script>
 
@@ -57,7 +63,7 @@
 	{#if showModal}
 		<Modal on:close={handleClose} genreSelected={strSelected} />
 	{/if}
-	<h1 class="font-semibold text-2xl">Algoritma Pengurutan Rekomendasi Anime</h1>
+	<h1 class="font-semibold text-2xl">Algoritma Pengurutan Rekomendasi Anime berdasarkan Genre</h1>
   	<div class="flex flex-col lg:flex-row lg:space-x-2 space-y-2 ">
 		<div class="bg-gray-300 rounded p-2 shadow-md mt-2 lg:w-1/2 flex-1">
 			<h1 class="font-semibold mb-1">Daftar Genre</h1>
@@ -96,7 +102,20 @@
 			<button on:click={handleProcess} class="transition duration-300 ease-in-out bg-purple-400 hover:bg-purple-600 font-semibold w-full py-2 mt-2 rounded text-white ">
 				Tampilkan Anime
 			</button>
+			
+			{#if showNotif}
+				<h1 class="mt-1 text-base font-semibold text-red-500">Silakan pilih genre!</h1>
+			{/if}
     	</div>
-  	</div>
+	  </div>
+	  <div class="mt-2">
+		  
+		  <div class="space-y-2 lg:px-52"> 
+			<h1 class="text-base font-semibold">List Anime (dalam database kami)</h1>
+			{#each animes as anime, i}
+                <CardAnime title={anime.title}  genres={anime.genres} views={anime.views} episode={anime.episode} ranking={i+1} />
+            {/each}
+        </div>
+	  </div>
 </main>
 
