@@ -1,5 +1,5 @@
 /node_modules/
 /public/build/
-/tubes-aa-fix/
+/dist/
 /public/index.css
 .DS_Store

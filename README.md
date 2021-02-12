@@ -2,10 +2,12 @@
 
 # How To Use
 ---
+## Using NPM
+on Terminal/CMD type 
 ```bash
-git clone https://github.com/Gonior/tubes-aa
-cd tubes-aa
-npm i // yarn
-npm run dev // yarn dev
+npm start
 ```
+## Using HTML
+`double click on dist/index.html`
+
 *Note that you will need to have [Node.js](https://nodejs.org) installed.*
