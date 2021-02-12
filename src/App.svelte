@@ -64,6 +64,7 @@
 		<Modal on:close={handleClose} genreSelected={strSelected} />
 	{/if}
 	<h1 class="font-semibold text-2xl">Algoritma Pengurutan Rekomendasi Anime berdasarkan Genre</h1>
+	<h3 class="text-sm">Dibuat oleh : <span class="italic text-gray-400">Dedi Cahya - 10118901, Agung Sepruloh - 10118902, Firman Alfinas - 10118904, M. Syifa Amruloh - 10118910, Ala Rai Abdiallah - 10116006</span></h3>
   	<div class="flex flex-col lg:flex-row lg:space-x-2 space-y-2 ">
 		<div class="bg-gray-300 rounded p-2 shadow-md mt-2 lg:w-1/2 flex-1">
 			<h1 class="font-semibold mb-1">Daftar Genre</h1>
